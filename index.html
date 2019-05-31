@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+<h1>Press any key to begin!</h1>
+
+<br>
+<p id="wordToGuess"></p>
+<p id="text"></p>
+<p id="wins">Wins: 0</p>
+<p id="losses">Losses: 0</p>
+<p id="guesses">Guesses: 0</p>
+<br>
+<p id="badGuesses"></p>
+
+    <script>
+
+// define wordbank
+        var wordBank = ["shark", "whale", "turtle", "jellyfish", "tuna", "snail", "crab", "ray"];
+
+//define global variables       
+        var wins = 0;
+        var loss = 0;
+        var guesses = 0;
+        var displayWord = "";
+        var badLetters = "";
+
+//define function to grab a random word
+// var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+//  function newWord() {
+        var guessMe = wordBank[Math.floor(Math.random() * wordBank.length)];
+        alert(guessMe);
+        alert(wordBank);
+        // };
+
+//display our word to us
+        // newWord();
+        document.getElementById("wordToGuess").innerHTML = guessMe;
+//convert word to blank spaces
+
+        for (var j = 0; j <= guessMe.length -1; j++ ) {
+            var displayWord = displayWord + "_";
+        }
+
+        document.getElementById("text").innerHTML = displayWord;
+
+//capture a key
+document.onkeyup= function(event){
+    // console.log(event.key);
+    userGuess = event.key;
+// compare user input to correct answer;
+    for (var i = 0; i <= guessMe.length -1; i++) {
+        var bingo=0;
+        if(userGuess===guessMe.charAt(i)){
+             alert("Win!"),
+             //correct letter!
+             guesses=guesses+1;
+             wins = wins + 1;
+             bingo = 1;
+                document.getElementById("wins").innerHTML = "Wins: " + wins;
+             //replace blank with letter
+               function rep() {
+                //    var str = 'Hello World';
+                   displayWord = setCharAt(displayWord, i, userGuess);
+                  alert(displayWord);
+                  document.getElementById("text").innerHTML = displayWord;
+
+                }
+
+                function setCharAt(displayWord,index,chr) {
+                     if(index > displayWord.length-1) return displayWord;
+                     return displayWord.substr(0,index) + chr + displayWord.substr(index+1);
+                }
+            rep();
+//test if we have the whole world complete
+                // if(displayWord=guessMe) {
+                //     alert("You FUCKING WIN!");
+                //     //reset variables
+                //         var wins = 0;
+                //         var loss = 0;
+                //         var guesses = 0;
+                //         var displayWord = "";
+                //         var badLetters = "";
+                //         var guessMe = wordBank[Math.floor(Math.random() * wordBank.length)];
+
+                //         for (var j = 0; j <= guessMe.length -1; j++ ) {
+                //             var displayWord = displayWord + "_";
+                //         }
+
+                     document.getElementById("text").innerHTML = displayWord;
+
+        }
+    
+// alert(bingo,i); 
+            if(bingo===0 && i===guessMe.length-1) 
+                {
+                     alert("NO!"),
+                loss = loss + 1;
+                document.getElementById("losses").innerHTML = "Losses: " + loss;
+                badLetters = badLetters + userGuess +" ";
+                document.getElementById("badGuesses").innerHTML = badLetters;
+                } 
+    }    
+//go back and test another letter
+}
+
+//test key vs first letter
+// str.charAt(
+   
+    //     if str.charAt()
+    //   }
+
+
+</script>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
