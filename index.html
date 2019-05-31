@@ -71,7 +71,7 @@ document.onkeyup= function(event){
                function rep() {
                 //    var str = 'Hello World';
                    displayWord = setCharAt(displayWord, i, userGuess);
-                  alert(displayWord);
+                //   alert(displayWord);
                   document.getElementById("text").innerHTML = displayWord;
 
                 }
@@ -108,6 +108,7 @@ document.onkeyup= function(event){
                 document.getElementById("losses").innerHTML = "Losses: " + loss;
                 badLetters = badLetters + userGuess +" ";
                 document.getElementById("badGuesses").innerHTML = badLetters;
+                break;
                 } 
     }    
 //go back and test another letter
