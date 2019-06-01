@@ -7,27 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cardo:400,700|Oswald" >
     <link rel="stylesheet" href="assets/css/style.css">
+
   </head>
 <body>
-
-
-
-<!-- Known Issues List -->
-<!-- TODO: #1 doesn't work with words that have duplicate letters -->
-<!-- TODO: #2 Accepts input which is not a letter -->
-<!-- SOLVED #3 Doesn't adjust for case -->
-<!-- SOLVED #4 java need to be extracted and moved to discrete files -->
-<!-- TODO: duplicate guesses not rejected -->
-<!-- TODO: add spaces between blank letters -->
-<!-- TODO: Last letter chosen not displayed before win message -->
-
-
+<img src="assets/images/banner.jpg" alt="80's style hangman!">
 <h1>Welcome to Pacific Ocean Hangman!</h1>
-<h2>Press any key to begin!</h2>
+<h2>Press a letter to begin!</h2>
 
-<br>
-<!-- this line so testing is easy -->
+<!-- this line shows the answer so testing is easy -->
 <p id="wordToGuess"></p>
 
 <!-- this line shows blanks -->
@@ -35,13 +24,9 @@
 <p id="wins">Correct Guesses: 0</p>
 <p id="losses">Incorrect Guesses: 0</p>
 <p id="guesses">Total Guesses: 0</p>
-<br>
+
 <h3>Incorrect Guesses:</h3>
 <h4><p id="badGuesses"></p></h4>
-
-<script>
-
-</script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -50,6 +35,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
  
- <script src=assets/javascript/game.js></script>
+    <script src=assets/javascript/game.js></script>
   </body>
 </html>

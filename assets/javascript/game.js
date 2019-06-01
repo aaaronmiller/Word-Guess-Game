@@ -8,25 +8,49 @@ var wordBank = ["shark", "whale", "orca", "sculpin", "tuna", "snail", "crab", "r
         var guesses = 0;
         var displayWord = "";
         var badLetters = "";
+        var isUsed = 0;
+        var isLetter = true;
 
-//define function to grab a random word
-// var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
+//test if input is a letter
 function validate(strValue) {
   var objRegExp  = /^[a-z]+$/;
   return objRegExp.test(strValue);
 }
 
+//test if letter is new
+function isNewLetter(input) {
+    //test if a bad letter is already used
+    for (var k = 0; k <= badLetters.length; k++) {
+        if(input === badLetters.charAt(k)){
+        isUsed = 1;
+        return false;
+        break;
+        }
+        else {
+            isUsed = 0;
+        }
+    }
+    if (isUsed === 0) {
+//test if letter is correct and already used
+for (var l = 0; l <= displayWord.length; l++) {
+        if(input === displayWord.charAt(l)){
+            isUsed = 1;
+            return false;
+            break;
+        }
+        else {
+            isUsed = 0;
+        }
+    }
+        return true;
+    }
+}
 
-//  function newWord() {
-        var guessMe = wordBank[Math.floor(Math.random() * wordBank.length)];
-        // alerts for testing
-        // alert(guessMe);
-        // alert(wordBank);
-        // };
+
+var guessMe = wordBank[Math.floor(Math.random() * wordBank.length)];
 
 //display our word to us
-        // newWord();
         document.getElementById("wordToGuess").innerHTML = guessMe;
 //convert word to blank spaces
 
@@ -38,19 +62,18 @@ function validate(strValue) {
 
 //capture a key
 document.onkeyup= function(event){
-    // test if input is a letter
+// test if input is a letter
     inputKey = event.key;
     var userGuess = inputKey.toLowerCase();
     isLetter = validate(userGuess);
-    if(isLetter === true && userGuess.length <2)  
+    newKey = isNewLetter(userGuess);
+// if userGuess.length >1 then user pressed a functino key and not a letter
+    if(isLetter === true && userGuess.length <2 && newKey === true)  
     {
-        
-        // compare user input to correct answer;
+// compare user input to correct answer;
         for (var i = 0; i <= guessMe.length -1; i++) {
         var didWin=0;
         if(userGuess===guessMe.charAt(i)){
-            //  alert("Win!"),
-             //correct letter!
              guesses=guesses+1;
              wins = wins + 1;
              didWin = 1;
@@ -58,9 +81,8 @@ document.onkeyup= function(event){
                 document.getElementById("guesses").innerHTML = "Total Guesses  : " + guesses;
              //replace blank with letter
                function rep() {
-                   displayWord = setCharAt(displayWord, i, userGuess);
-                //   alert(displayWord);
-                  document.getElementById("text").innerHTML = displayWord;
+                displayWord = setCharAt(displayWord, i, userGuess);
+                document.getElementById("text").innerHTML = displayWord;
 
                 }
 
@@ -88,24 +110,14 @@ document.onkeyup= function(event){
                     document.getElementById("wordToGuess").innerHTML = guessMe;
                     document.getElementById("wins").innerHTML = "Correct Guesses  : ";
                     document.getElementById("guesses").innerHTML = "Total Guesses  : ";
-                    document.getElementById("losses").innerHTML = "Incorrect Guesses: ";
-
-
-
-
-                    
-
-                    break;
-                 
-
+                    document.getElementById("losses").innerHTML = "Incorrect Guesses: ";           
+                    break;           
                 }
                 break;     
-
         }
-        
+        //not a correct guess
             if(didWin===0 && i===guessMe.length-1) 
                 {
-                // alert(didWin + "" + i + " NO!"),
                 loss = loss + 1;
                 guesses = guesses + 1;
                 document.getElementById("losses").innerHTML = "Incorrect Guesses: " + loss;

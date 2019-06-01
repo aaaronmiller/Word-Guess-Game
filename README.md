@@ -3,13 +3,13 @@ Homework assignment #3 5/31/19
 Aaron Miller
 
 <!-- Known Issues List -->
-<!-- TODO: doesn't work with words that have duplicate letters -->
+<!-- TODO: game doesn't work with words that have duplicate letters -->
 <!-- SOLVED Accepts input which is not a letter -->
 <!-- SOLVED Doesn't adjust for case -->
 <!-- SOLVED java need to be extracted and moved to discrete files -->
-<!-- TODO: duplicate guesses not rejected -->
-<!-- TODO: add spaces between blank letters -->
-<!-- TODO: Last letter chosen not isplayed before win message -->
+<!-- SOLVED duplicate correct guesses not rejected, bad guesses are fine now -->
+<!-- TODO: would look better if there were spaces between blank letters -->
+<!-- TODO: Last letter chosen not displayed before win message -->
 <!-- TODO: fix readability of code, looks uuuughhlyyy -->
 
 
