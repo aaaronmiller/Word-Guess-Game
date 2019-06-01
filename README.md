@@ -1,11 +1,19 @@
 # Word-Guess-Game
+Homework assignment #3 5/31/19
+Aaron Miller
 
 <!-- Known Issues List -->
-<!--#1 doesn't work with words that have duplicate letters -->
-<!-- #2 Accepts input which is not a letter -->
-<!-- #3 Doesn't adjust for case -->
+<!-- TODO: doesn't work with words that have duplicate letters -->
+<!-- SOLVED Accepts input which is not a letter -->
+<!-- SOLVED Doesn't adjust for case -->
+<!-- SOLVED java need to be extracted and moved to discrete files -->
+<!-- TODO: duplicate guesses not rejected -->
+<!-- TODO: add spaces between blank letters -->
+<!-- TODO: Last letter chosen not isplayed before win message -->
+<!-- TODO: fix readability of code, looks uuuughhlyyy -->
 
-<!-- dog ascii art here -->
+
+<!-- dog ascii art start -->
 
       .:/+s+///+ooo+/.`       ``                                                              
       -ossssyyo//////-.                            
