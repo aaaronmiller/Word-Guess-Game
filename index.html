@@ -5,26 +5,38 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
-  <body>
+  <body style="text-align: center">
+
+
+
+<!-- Known Issues List -->
+<!--#1 doesn't work with words that have duplicate letters -->
+<!-- #2 Accepts input which is not a letter -->
+<!-- #3 Doesn't adjust for case -->
+
 <h1>Press any key to begin!</h1>
 
 <br>
+<!-- this line so testing is easy -->
 <p id="wordToGuess"></p>
-<p id="text"></p>
-<p id="wins">Wins: 0</p>
-<p id="losses">Losses: 0</p>
-<p id="guesses">Guesses: 0</p>
-<br>
-<p id="badGuesses"></p>
 
-    <script>
+
+<p id="text"></p>
+<p id="wins">Correct Guesses: 0</p>
+<p id="losses">Incorrect Guesses: 0</p>
+<p id="guesses">Total Guesses: 0</p>
+<br>
+<h3>Incorrect Guesses:</h3>
+<h4><p id="badGuesses"></p></h4>
+
+<script>
 
 // define wordbank
-        var wordBank = ["shark", "whale", "turtle", "jellyfish", "tuna", "snail", "crab", "ray"];
+        var wordBank = ["shark", "whale", "orca", "sculpin", "tuna", "snail", "crab", "ray"];
 
 //define global variables       
         var wins = 0;
@@ -38,8 +50,9 @@
 
 //  function newWord() {
         var guessMe = wordBank[Math.floor(Math.random() * wordBank.length)];
-        alert(guessMe);
-        alert(wordBank);
+        // alerts for testing
+        // alert(guessMe);
+        // alert(wordBank);
         // };
 
 //display our word to us
@@ -56,20 +69,22 @@
 //capture a key
 document.onkeyup= function(event){
     // console.log(event.key);
-    userGuess = event.key;
+    inputKey = event.key;
+
+    var userGuess = inputKey.toLowerCase();
 // compare user input to correct answer;
     for (var i = 0; i <= guessMe.length -1; i++) {
-        var bingo=0;
+        var didWin=0;
         if(userGuess===guessMe.charAt(i)){
              alert("Win!"),
              //correct letter!
              guesses=guesses+1;
              wins = wins + 1;
-             bingo = 1;
-                document.getElementById("wins").innerHTML = "Wins: " + wins;
+             didWin = 1;
+                document.getElementById("wins").innerHTML = "Correct Guesses  : " + wins;
+                document.getElementById("guesses").innerHTML = "Total Guesses  : " + guesses;
              //replace blank with letter
                function rep() {
-                //    var str = 'Hello World';
                    displayWord = setCharAt(displayWord, i, userGuess);
                 //   alert(displayWord);
                   document.getElementById("text").innerHTML = displayWord;
@@ -81,31 +96,56 @@ document.onkeyup= function(event){
                      return displayWord.substr(0,index) + chr + displayWord.substr(index+1);
                 }
             rep();
+            document.getElementById("text").innerHTML = displayWord;
+
 //test if we have the whole world complete
-                // if(displayWord=guessMe) {
-                //     alert("You FUCKING WIN!");
-                //     //reset variables
-                //         var wins = 0;
-                //         var loss = 0;
-                //         var guesses = 0;
-                //         var displayWord = "";
-                //         var badLetters = "";
-                //         var guessMe = wordBank[Math.floor(Math.random() * wordBank.length)];
+                if(displayWord==guessMe) {
+                    alert("You FUCKING WIN!");
+                    wins = 0;
+                    loss = 0;
+                    guesses = 0;
+                    displayWord = "";
+                    badLetters = "";
+                    guessMe = wordBank[Math.floor(Math.random() * wordBank.length)];
+                    for (var j = 0; j <= guessMe.length -1; j++ ) {
+                        displayWord = displayWord + "_";
+                    }
+                    document.getElementById("text").innerHTML = displayWord;
+                    document.getElementById("badGuesses").innerHTML = "";
+                    document.getElementById("wordToGuess").innerHTML = guessMe;
+                    
 
-                //         for (var j = 0; j <= guessMe.length -1; j++ ) {
-                //             var displayWord = displayWord + "_";
-                //         }
+                    break;
+                    // reset variables
+                        // var wins = 0;
+                        // var loss = 0;
+                        // var guesses = 0;
+                        // var displayWord = "";
+                        // var badLetters = "";
+                        // var guessMe = wordBank[Math.floor(Math.random() * wordBank.length)];
 
-                     document.getElementById("text").innerHTML = displayWord;
+                     
+                        // }
+
+                        // break;  
+                        // 
+
+                }
+                break;     
 
         }
-    
-// alert(bingo,i); 
-            if(bingo===0 && i===guessMe.length-1) 
+            // if (didWin===1 && i===guessMe.length-1) {
+            //   break;
+            // }
+  
+// alert(didWin,i); 
+            if(didWin===0 && i===guessMe.length-1) 
                 {
-                     alert("NO!"),
+                alert(didWin + "" + i + " NO!"),
                 loss = loss + 1;
-                document.getElementById("losses").innerHTML = "Losses: " + loss;
+                guesses = guesses + 1;
+                document.getElementById("losses").innerHTML = "Incorrect Guesses: " + loss;
+                document.getElementById("guesses").innerHTML = "Total Guesses  : " + guesses;
                 badLetters = badLetters + userGuess +" ";
                 document.getElementById("badGuesses").innerHTML = badLetters;
                 break;
