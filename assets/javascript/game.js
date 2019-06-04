@@ -10,6 +10,7 @@ var wordBank = ["shark", "whale", "orca", "sculpin", "tuna", "snail", "crab", "r
         var badLetters = "";
         var isUsed = 0;
         var isLetter = true;
+        var guessWord = " ";
 
 
 //test if input is a letter
@@ -55,7 +56,7 @@ var guessMe = wordBank[Math.floor(Math.random() * wordBank.length)];
 //convert word to blank spaces
 
         for (var j = 0; j <= guessMe.length -1; j++ ) {
-            var displayWord = displayWord + "_";
+            var displayWord = displayWord + "_ ";
         }
 
         document.getElementById("text").innerHTML = displayWord;
@@ -67,21 +68,31 @@ document.onkeyup= function(event){
     var userGuess = inputKey.toLowerCase();
     isLetter = validate(userGuess);
     newKey = isNewLetter(userGuess);
+    loop = 0;
 // if userGuess.length >1 then user pressed a functino key and not a letter
     if(isLetter === true && userGuess.length <2 && newKey === true)  
-    {
+    {   
 // compare user input to correct answer;
         for (var i = 0; i <= guessMe.length -1; i++) {
-        var didWin=0;
+        didWin=0;
         if(userGuess===guessMe.charAt(i)){
              guesses=guesses+1;
              wins = wins + 1;
              didWin = 1;
+                
                 document.getElementById("wins").innerHTML = "Correct Guesses  : " + wins;
                 document.getElementById("guesses").innerHTML = "Total Guesses  : " + guesses;
              //replace blank with letter
                function rep() {
+                if (i === 0) {
                 displayWord = setCharAt(displayWord, i, userGuess);
+            }
+                else {displayWord = setCharAt(displayWord, (i + i), userGuess)};
+                ;
+                loop = loop + 1;
+                // alert(i);
+                // alert(loop);
+                // alert(guessWord);
                 document.getElementById("text").innerHTML = displayWord;
 
                 }
@@ -90,17 +101,29 @@ document.onkeyup= function(event){
                      if(index > displayWord.length-1) return displayWord;
                      return displayWord.substr(0,index) + chr + displayWord.substr(index+1);
                 }
+
+               function repTwo() {
+                guessWord = setCharAtTwo(guessWord, i, userGuess);
+                }
+
+                function setCharAtTwo(guessWord,index,chr) {
+                     if(index > guessWord.length-1) return guessWord;
+                     return guessWord.substr(0,index) + chr + guessWord.substr(index+1);
+                }
             rep();
+            repTwo();
+            // alert(guessWord);
             document.getElementById("text").innerHTML = displayWord;
 
 //test if we have the whole world complete
-                if(displayWord==guessMe) {
+                if(guessWord==guessMe) {
                     alert("You FUCKING WIN!");
                     wins = 0;
                     loss = 0;
                     guesses = 0;
                     displayWord = "";
-                    badLetters = ""; 
+                    badLetters = "";
+                    guessWord = "";
                     guessMe = wordBank[Math.floor(Math.random() * wordBank.length)];
                     for (var j = 0; j <= guessMe.length -1; j++ ) {
                         displayWord = displayWord + "_";
